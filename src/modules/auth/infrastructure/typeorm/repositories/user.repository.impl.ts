@@ -17,6 +17,12 @@ export class UserRepositoryImpl implements IUserRepository {
     // throw new Error('Method not implemented.');
     const entity = this.repo.create(user);
     const saved = await this.repo.save(entity);
-    return new User(saved.id, saved.email, saved.username, saved.password);
+    return new User(
+      saved.id,
+      saved.email,
+      saved.username,
+      saved.password,
+      saved.type_utilisateur,
+    );
   }
 }

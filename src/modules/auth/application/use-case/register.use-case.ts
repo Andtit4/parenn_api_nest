@@ -9,9 +9,10 @@ export class RegisterUseCase {
     email: string,
     username: string,
     password: string,
+    type_utilisateur: string,
   ): Promise<User> {
     const hashed = await bcrypt.hash(password, 10);
-    const user = new User(0, email, username, hashed);
+    const user = new User(0, email, username, hashed, type_utilisateur);
     return this.useRepo.save(user);
   }
 }

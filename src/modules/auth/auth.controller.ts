@@ -1,4 +1,11 @@
-import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  UnauthorizedException,
+  Request,
+} from '@nestjs/common';
 import { UserRepositoryImpl } from './infrastructure/typeorm/repositories/user.repository.impl';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -33,6 +40,11 @@ export class AuthController {
   @Post('register')
   async register(@Body() body) {
     const useCase = new RegisterUseCase(this.userRepo);
-    return useCase.execute(body.email, body.username, body.password);
+    return useCase.execute(body.email, body.username, body.password, 'CLIENT');
+  }
+
+  @Get('me')
+  async getMe(@Request() req) {
+    return req.user;
   }
 }
