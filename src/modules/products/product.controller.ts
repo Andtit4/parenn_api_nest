@@ -25,4 +25,9 @@ export class ProductController {
   async getProductById(@Param() id: number) {
     return await this.getProductById(id);
   }
+
+  @Get()
+  async getAll() {
+    return this.useRepo.getAll();
+  }
 }
