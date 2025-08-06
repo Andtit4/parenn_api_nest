@@ -32,6 +32,7 @@ export class AuthController {
 
     const payload = {
       email: user.email,
+      // username: user.username,
       sub: user.id,
       username: user.username,
     };
